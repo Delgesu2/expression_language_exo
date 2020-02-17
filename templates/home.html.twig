@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des produits</h1>
+
+    <main>
+        <table>
+            <tr>
+                <th>nom</th>
+                <th>prix</th>
+                <th>prix réduit</th>
+                <th>catégorie</th>
+            </tr>
+            {%  for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                {% if product.discounted_price is defined %}
+                <td>{{ product.discounted_price }}</td>
+                {% else %}
+                <td>NULL</td>
+                {% endif %}
+                <td>{{ product.type }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+
+{% endblock %}
