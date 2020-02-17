@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des règles{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des règles</h1>
+
+    <main>
+        <table>
+            <tr>
+                <th>Expression</th>
+                <th>Pourcentage</th>
+            </tr>
+            {% for rule in rules %}
+            {% endfor %}
+        </table>
+    </main>
+
+{% endblock %}
+
