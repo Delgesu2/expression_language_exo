@@ -5,7 +5,8 @@ namespace App\Form;
 use App\Entity\Rules;
 use App\Repository\RuleRepository;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RuleHandler
 {
@@ -15,23 +16,31 @@ class RuleHandler
     private $ruleRepository;
 
     /**
-     * @var FlashBagInterface
+     * @var SessionInterface
      */
-    private $flashBag;
+    private $session;
+
+    /**
+     * @var ValidatorInterface $validator
+     */
+    private $validator;
 
     /**
      * RuleHandler constructor.
      *
      * @param RuleRepository $ruleRepository
-     * @param FlashBagInterface $flashBag
+     * @param SessionInterface $session
+     * @param ValidatorInterface $validator
      */
     public function __construct(
         RuleRepository       $ruleRepository,
-        FlashBagInterface    $flashBag
+        SessionInterface     $session,
+        ValidatorInterface   $validator
 )
     {
         $this->ruleRepository = $ruleRepository;
-        $this->flashBag       = $flashBag;
+        $this->session        = $session;
+        $this->validator      = $validator;
     }
 
 
@@ -48,9 +57,18 @@ class RuleHandler
     {
         if (($form->isSubmitted() && $form->isValid())) {
 
+            $constraints = $this->validator->validate($rule);
+
+            /**
+             * Validation
+             */
+            if (count($constraints) > 0) {
+                return false;
+            }
+
             $this->ruleRepository->save($rule);
 
-            $this->flashBag->add('success', 'La règle a bien été enregistrée.');
+            $this->session->getFlashbag()->add('success', 'La règle a bien été enregistrée.');
 
             return true;
         }

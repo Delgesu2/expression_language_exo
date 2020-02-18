@@ -3,13 +3,14 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config
-/public
+/config/
+!/config/validator
+/public/
 /var/
 /vendor/
 /src/Migrations
 /src/Kernel.php
-/tests/bootstrap/php
+/tests/bootstrap.php
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
