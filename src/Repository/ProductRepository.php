@@ -28,4 +28,13 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    /**
+     * @param Product $product
+     */
+    public function save(Product $product)
+    {
+        $this->_em->persist($product);
+        $this->_em->flush();
+    }
+
 }

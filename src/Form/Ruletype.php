@@ -25,7 +25,9 @@ class Ruletype extends AbstractType
     {
         $builder
             ->add('rule_expression', TextType::class, [
-                "label" => "Expression :"
+                "label" => "Expression :",
+                "help"  => "Forme obligatoire de l'expression: product.type = 'catégorie' and product.price > nombre. Tout 
+                en minuscules et le nombre entre 1 et 3 chiffres. Les espaces sont facultatifs."
             ])
 
             ->add('discount_percent', PercentType::class, [
