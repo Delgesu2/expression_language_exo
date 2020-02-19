@@ -61,9 +61,9 @@ class Discount
     public function changeProductPrice()
     {
         foreach ($this->product as $item){
-            $percent = $this->rules->getDiscountPercent();
             $rules    = $this->rules->getRuleExpression();
             $price   = $this->product->getPrice();
+            $new_price = ($this->rules->getDiscountPercent()*$price/100);
 
             foreach ($rules as $rule){
                 $this->expressionlanguage->evaluate(
@@ -71,7 +71,7 @@ class Discount
                     $this->product);
             }
 
-            $this->product->setPrice($percent*$price/100);
+            $this->product->setDiscountedPrice($new_price);
             $this->repository->save($item);
         }
     }
