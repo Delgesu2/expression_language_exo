@@ -3,8 +3,10 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/
+
+/config/*
 !/config/validator
+
 /public/
 /var/
 /vendor/

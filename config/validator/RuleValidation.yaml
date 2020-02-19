@@ -1,0 +1,19 @@
+App\Entity\Rules:
+    properties:
+        rule_expression:
+            - NotBlank:
+                message: 'Ce champ ne peut être vide'
+            - Regex:
+                pattern: "#^product.type ?= ?'[a-zéèô]*' ?and ?product.price ?> ?[0-9]{1,3}?$#"
+                match: true
+                message: L'expression n'est pas valide.
+        discount_percent:
+            - NotBlank:
+                message: 'Ce champ ne peut être vide'
+            - Range:
+                min: 1
+                max: 50
+                notInRangeMessage: Le montant de la réduction doit être compris entre {{ min }} et {{ max }}
+            - Type:
+                type: int
+                message: La valeur donnée doit être un nombre entier. {{ value }} n'en est pas un.
