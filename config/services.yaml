@@ -25,3 +25,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # des doutes sur ce service ...
+    Symfony\Component\ExpressionLanguage\ExpressionLanguage:
+        tags: ['security.expression_language']
+#        resource: '../src/Service'
+#        tags: ['sensio_framework_extra.converter.doctrine.orm.expression_language.default']
