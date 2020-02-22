@@ -66,13 +66,16 @@ class Discount
             $new_price = ($this->rules->getDiscountPercent()*$price/100);
 
             foreach ($rules as $rule){
-                $this->expressionlanguage->evaluate(
+                $isLegit = $this->expressionlanguage->evaluate(
                     $rule,
                     $this->product);
+
+                if($isLegit){
+                    $this->product->setDiscountedPrice($new_price);
+                    $this->repository->save($item);
+                }
             }
 
-            $this->product->setDiscountedPrice($new_price);
-            $this->repository->save($item);
         }
     }
 

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
+
     <body>
         <aside>
             <ul>
@@ -17,4 +20,5 @@
         {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
+
 </html>
