@@ -1,0 +1,17 @@
+<h1>Bonjour</h1>
+<h2>Liste des produits dont le prix est réduit</h2>
+
+    <table>
+        <tr>
+            <th>nom</th>
+            <th>prix</th>
+            <th>prix réduit</th>
+            <th>catégorie</th>
+        </tr>
+        {% for product in products %}
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.discounted_price }}</td>
+            <td>{{ product.type }}</td>
+        {% endfor %}
+    </table>
