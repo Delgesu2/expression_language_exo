@@ -29,6 +29,20 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
+     * Get product only if price is reduced
+     *
+     * @return mixed
+     */
+    public function getDiscountPrices()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.discounted_price' != NULL)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
      * @param Product $product
      */
     public function save(Product $product)
