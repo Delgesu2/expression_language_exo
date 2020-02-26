@@ -128,8 +128,7 @@ class DiscountCommand extends Command
 
         $this->mailer->sendEmail($this->mailerInterface, $this->productRepository);
 
-        return 0/1;
-
+        return 0;
 
     }
 
